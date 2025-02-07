@@ -2,10 +2,14 @@ import { useState } from "react";
 import Display from "./Display"
 import Button from "./Button"
 
+ // Calculator (Day 2) Team:
+// Toon, Iris, Jesus, Wend, Fouad
+
 // Steps
-// 1. Get numbers working - be able to type multidigit numbers in the display
-// 2. Be able to clear the display
-// 3. Addition operator
+// 1. Get numbers working - be able to type multidigit numbers in the display - complete
+// 2. Be able to clear the display - complete
+// 3. Decmial - complete
+// 4. Addition operator
 
 export default function Calculator() {
   const buttons = [
@@ -105,7 +109,6 @@ export default function Calculator() {
       case "decimal":
         setInput(input + value);
     }
-
   }
 
   const handleClick = (e) => {
