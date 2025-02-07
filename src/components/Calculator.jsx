@@ -1,5 +1,11 @@
+import { useState } from "react";
 import Display from "./Display"
 import Button from "./Button"
+
+// Steps
+// 1. Get numbers working - be able to type multidigit numbers in the display
+// 2. Be able to clear the display
+// 3. Addition operator
 
 export default function Calculator() {
   const buttons = [
@@ -73,20 +79,50 @@ export default function Calculator() {
     },
     {
       value: ".",
-      type: "operator",
+      type: "decimal",
     },
     {
       value: "=",
       type: "operator",
     },
   ]
+  const [input, setInput] = useState("0");
+  const [secondInput, setSecondInput] = useState("0");
+  const [operator, setOperator] = useState(null);
+
+  const handleUpdate = (value, type) => {
+    switch(type){
+      case "number":
+        setInput(Number(input + value));
+        break;
+      case "clear":
+        setInput("0");  
+        break;
+      case "operator":
+        setOperator(value);
+        console.log(value);
+        break;
+      case "decimal":
+        setInput(input + value);
+    }
+
+  }
+
+  const handleClick = (e) => {
+   handleUpdate(e.target.textContent, e.target.name);
+  }
 
   return (
     <div className="calculator">
-      <Display />
+      <Display input={input} />
       <div className="calculator__buttons">
         {buttons.map((button, index) => (
-          <Button value={button.value} key={index}/>
+          <Button 
+            value={button.value} 
+            type={button.type}
+            key={index}
+            handleClick={handleClick}
+          />
         ))}
       </div>
     </div>

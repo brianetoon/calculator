@@ -1,5 +1,5 @@
-export default function Display() {
+export default function Display({input}) {
   return (
-    <div className="display">0</div>
+    <div className="display">{input}</div>
   )
 }
